@@ -19,8 +19,24 @@
  *   set to -1 to start with (since we don't have anything in the heap).
  */
 MinHeap *newMinHeap(int size) {
+  MinHeap *min_heap = malloc(sizeof(MinHeap));
+  
+  if (min_heap == NULL){
+    printf("Memory allocation failed");
+    return 1;
+  }
 
-  return NULL; // Allocate and return heap.
+  min_heap->numItems = 0;
+  min_heap->maxSize = size;
+  min_heap->arr = malloc(size * sizeof(HeapElement));
+  min_heap->indices = malloc(size * sizeof(int));
+
+  for (int i=0; i < sizeof(min_heap->indices) / sizeof(int); i++){
+    min_heap->indices[i] = -1;
+  }
+
+  return min_heap;
+
 }
 
 /**
