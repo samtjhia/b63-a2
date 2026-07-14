@@ -67,15 +67,6 @@ void swap(MinHeap *heap, int a, int b) {
  * enough space in the heap for it.
  */
 void heapPush(MinHeap *heap, int val, double priority) {
-  /*
-  PLAN
-  - add a new heap element at the end of the heap
-  - update the arrays
-  - increase the items count
-  - bubble up while loop
-    - compare with the parent
-    - if the new element is smaller than parent use swap function
-  */
 
   HeapElement new_elem;
   new_elem.val = val;
@@ -86,7 +77,7 @@ void heapPush(MinHeap *heap, int val, double priority) {
 
   int i = heap->numItems - 1;
   int p_idx = (i - 1) / 2;
-  while (heap->arr[i].priority < heap->arr[p_idx].priority && i > 0){
+  while (i > 0 && heap->arr[i].priority < heap->arr[p_idx].priority){
     swap(heap, i, p_idx);
     i = p_idx;
     p_idx = (i - 1) / 2;
