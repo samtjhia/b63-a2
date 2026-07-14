@@ -76,6 +76,21 @@ void heapPush(MinHeap *heap, int val, double priority) {
     - compare with the parent
     - if the new element is smaller than parent use swap function
   */
+
+  HeapElement new_elem;
+  new_elem.val = val;
+  new_elem.priority = priority;
+  heap->arr[heap->numItems] = new_elem;
+  heap->indices[val] = heap->numItems;
+  heap->numItems++;
+
+  int i = heap->numItems;
+  int p_idx = (i - 1) / 2;
+  while (heap->arr[i].priority < heap->arr[p_idx].priority || i == 0){
+    swap(heap, i, p_idx);
+    i = heap->numItems;
+    p_idx = (i - 1) / 2;
+  }
 }
 
 /**
