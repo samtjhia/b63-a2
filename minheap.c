@@ -176,7 +176,19 @@ int heapExtractMin(MinHeap *heap, double *priority)
  */
 void heapDecreasePriority(MinHeap *heap, int val, double priority)
 {
-  return; // Decrease priority before return
+  if (heap->indices[val] == -1){
+    return;
+  }
+  int i = heap->indices[val];
+  heap->arr[i].priority = priority;
+
+  int p_idx = (i - 1) / 2;
+  while (i > 0 && heap->arr[i].priority < heap->arr[p_idx].priority)
+  {
+    swap(heap, i, p_idx);
+    i = p_idx;
+    p_idx = (i - 1) / 2;
+  }
 }
 
 /**
@@ -185,5 +197,5 @@ void heapDecreasePriority(MinHeap *heap, int val, double priority)
  */
 void freeHeap(MinHeap *heap)
 {
-  return; // Free heap and it's arrays
+  
 }
