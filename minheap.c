@@ -67,7 +67,15 @@ void swap(MinHeap *heap, int a, int b) {
  * enough space in the heap for it.
  */
 void heapPush(MinHeap *heap, int val, double priority) {
-  return; // Push value to heap before returning
+  /*
+  PLAN
+  - add a new heap element at the end of the heap
+  - update the arrays
+  - increase the items count
+  - bubble up while loop
+    - compare with the parent
+    - if the new element is smaller than parent use swap function
+  */
 }
 
 /**
