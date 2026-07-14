@@ -101,6 +101,15 @@ void heapPush(MinHeap *heap, int val, double priority) {
  * You may assume there is at least 1 value in the heap.
  */
 int heapExtractMin(MinHeap *heap, double *priority) {
+  /*
+  PLAN
+  basically the opposite of heapPush
+  - extract the val and prio at the root
+  - delete it by setting the val to -1 in indices array
+  - use last elem in heap as the new root
+  - while loop bubble down for heap property
+  */
+  
   *priority = 0.0;  // Set correct priority  
   return 0;         // Return correct value
 }
