@@ -197,5 +197,9 @@ void heapDecreasePriority(MinHeap *heap, int val, double priority)
  */
 void freeHeap(MinHeap *heap)
 {
-  
+  if (heap == NULL){return;}
+
+  free(heap->arr);
+  free(heap->indices);
+  free(heap);
 }
