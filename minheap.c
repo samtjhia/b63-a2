@@ -112,22 +112,24 @@ int heapExtractMin(MinHeap *heap, double *priority) {
   int root_val = heap->arr[0].val;
   double root_prio = heap->arr[0].priority;
 
-  heap->indices[root_val] = -1;
   swap(heap, heap->numItems - 1, 0);
+  heap->indices[root_val] = -1;
   heap->numItems--;
   
   int i = 0;
   int left_child = 2*i + 1;
   int right_child = 2*i + 2;
-  while(i < heap->numItems && (heap->arr[i].priority > heap->arr[left_child].priority || heap->arr[i].priority > heap->arr[right_child].priority)){
-    if (heap->arr[left_child].priority > heap->arr[right_child].priority){
+  while(left_child < heap->numItems && (heap->arr[i].priority > heap->arr[left_child].priority || heap->arr[i].priority > heap->arr[right_child].priority)){
+    if (heap->arr[left_child].priority < heap->arr[right_child].priority){
       swap(heap, i, left_child);
       i = left_child;
       left_child = 2*i + 1;
+      right_child = 2*i + 2;
     }
     else{
       swap(heap, i, right_child);
       i = right_child;
+      left_child = 2*i + 1;
       right_child = 2*i + 2;
     }
   }
