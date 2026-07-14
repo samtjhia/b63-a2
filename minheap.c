@@ -84,11 +84,11 @@ void heapPush(MinHeap *heap, int val, double priority) {
   heap->indices[val] = heap->numItems;
   heap->numItems++;
 
-  int i = heap->numItems;
+  int i = heap->numItems - 1;
   int p_idx = (i - 1) / 2;
-  while (heap->arr[i].priority < heap->arr[p_idx].priority || i == 0){
+  while (heap->arr[i].priority < heap->arr[p_idx].priority && i > 0){
     swap(heap, i, p_idx);
-    i = heap->numItems;
+    i = p_idx;
     p_idx = (i - 1) / 2;
   }
 }
