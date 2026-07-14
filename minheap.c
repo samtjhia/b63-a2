@@ -109,9 +109,31 @@ int heapExtractMin(MinHeap *heap, double *priority) {
   - use last elem in heap as the new root
   - while loop bubble down for heap property
   */
+  int root_val = heap->arr[0].val;
+  double root_prio = heap->arr[0].priority;
+
+  heap->indices[root_val] = -1;
+  swap(heap, heap->numItems - 1, 0);
+  heap->numItems--;
   
-  *priority = 0.0;  // Set correct priority  
-  return 0;         // Return correct value
+  int i = 0;
+  int left_child = 2*i + 1;
+  int right_child = 2*i + 2;
+  while(i < heap->numItems && (heap->arr[i].priority > heap->arr[left_child].priority || heap->arr[i].priority > heap->arr[right_child].priority)){
+    if (heap->arr[left_child].priority > heap->arr[right_child].priority){
+      swap(heap, i, left_child);
+      i = left_child;
+      left_child = 2*i + 1;
+    }
+    else{
+      swap(heap, i, right_child);
+      i = right_child;
+      right_child = 2*i + 2;
+    }
+  }
+
+  *priority = root_prio;  // Set correct priority  
+  return root_val;         // Return correct value
 }
 
 /**
